@@ -81,25 +81,30 @@ class Conference
         return $this->comments;
     }
 
-    public function addComent(Comment $coment): self
+    public function addComment(Comment $comment): self
     {
-        if (!$this->comments->contains($coment)) {
-            $this->comments->add($coment);
-            $coment->setConference($this);
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setConference($this);
         }
 
         return $this;
     }
 
-    public function removeComent(Comment $coment): self
+    public function removeComment(Comment $comment): self
     {
-        if ($this->comments->removeElement($coment)) {
+        if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
-            if ($coment->getConference() === $this) {
-                $coment->setConference(null);
+            if ($comment->getConference() === $this) {
+                $comment->setConference(null);
             }
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->city . ' ' . $this->year;
     }
 }
